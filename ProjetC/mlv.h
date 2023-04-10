@@ -6,6 +6,7 @@
 #define WINDOW_HEIGHT 1000
 #define POINT_SIZE 2.5
 
-void afficher_zone(point *p, int max_size);
+void afficher_points(point *p, int max_size);
+void afficher_zone();
 
 #endif 
