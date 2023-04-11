@@ -8,5 +8,7 @@
 
 void afficher_points(point *p, int max_size);
 void afficher_zone();
-
+void choose_cercle(point circle);
+void choose_points(point *point);
+void mode_creation(point *points);
 #endif 

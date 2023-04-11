@@ -4,11 +4,6 @@
 #include "kppv.h"
 #include "MLV/MLV_all.h"
 
-void usage(char *s)
-{
-    printf("Usage: %s <nom de ficher>\n", s);
-}
-
 float distance(point p1, point p2)
 {
     float dx = p2.x - p1.x;
