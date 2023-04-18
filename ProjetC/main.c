@@ -11,6 +11,7 @@
 
 void run_programme()
 {
+    int count = 0;
     int max_size; /*La taille maximal*/
     int dim;      /*La dimension*/
     int nb_class; /*nombre de la classe*/
@@ -24,10 +25,10 @@ void run_programme()
     FILE *f = NULL;
     int endProgramme = FALSE;
 
+    afficher_zone();
     while (endProgramme)
     {
         /*affichage graphique des points du fichier*/
-        afficher_zone();
 
         MLV_wait_mouse(&x, &y);
 
@@ -49,9 +50,12 @@ void run_programme()
             {
                 MLV_draw_text(300, 120, "Ce fichier n'existe pas.", MLV_COLOR_RED);
                 MLV_actualise_window();
+                MLV_wait_seconds(5);
+                afficher_zone();
             }
             else
             {
+                afficher_zone();
                 MLV_draw_text(300, 120, "OK!", MLV_COLOR_GREEN);
                 MLV_actualise_window();
 
@@ -77,6 +81,17 @@ void run_programme()
             }
         }
 
+        /*choose cercle*/
+        if ((x >= 65) && (x <= 585) & (y >= 165) & (y <= 785))
+        {
+            if (count == 0)
+            {
+                choose_cercle(cercle);
+                count++;
+            }
+        }
+
+        /*input num K*/
         if ((x >= 450) && (x <= 575) && (y >= 40) && (y <= 90))
         {
             MLV_wait_input_box(450, 100, 125, 50,
@@ -93,9 +108,12 @@ void run_programme()
         {
         }
 
-        choose_cercle(cercle);
-        indices = (point *)malloc(k * sizeof(struct Point));
-        indices = k_nearest_neighbors(p, cercle, max_size, k);
+        if ((x >= 585) && (x <= 755) && (y >= 450) && (y <= 500))
+        {
+            indices = (point *)malloc(k * sizeof(struct Point));
+            indices = k_nearest_neighbors(p, cercle, max_size, k);
+            classer(indices, nb_class, k);
+        }
 
         /*
         if ((x >= 800) && (x <= 900) && (y >= 40) && (y <= 90))

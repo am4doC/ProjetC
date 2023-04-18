@@ -160,6 +160,7 @@ int classer(point *indices, int nb_class, int k)
             class = i;
         }
     }
+    MLV_draw_text(450, 120, KNN, MLV_COLOR_GREEN);
     printf("classe de cercle est %d\n", class);
     free(count_class);
     return class;

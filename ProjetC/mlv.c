@@ -3,6 +3,7 @@
 
 void afficher_zone()
 {
+    MLV_clear_window(MLV_COLOR_BLACK);
     /*creation de l'interface graphique avec option*/
     MLV_draw_rectangle(
         65, 165, 520, 520, MLV_COLOR_WHITE);
@@ -76,8 +77,10 @@ void choose_cercle(point circle)
     int x, y;
     MLV_wait_mouse(&x, &y);
     MLV_draw_circle(x, y, POINT_SIZE, MLV_COLOR_WHITE);
-    circle.x = (x - 75 - (500 / 2)) / 250;
-    circle.y = (y - 175 - (500 / 2)) / 250;
+    printf("x = %d, y = %d\n", x, y);
+    circle.x = ((float)x - 75 - (500 / 2)) / 250;
+    circle.y = ((float)y - 175 - (500 / 2)) / 250;
+    printf("x = %f, y = %f\n", circle.x, circle.y);
     MLV_actualise_window();
 }
 
@@ -98,17 +101,19 @@ void mode_creation(point *points)
     MLV_clear_window(MLV_COLOR_BLACK);
     afficher_zone();
     MLV_wait_input_box(190, 40, 100, 50, MLV_COLOR_WHITE,
-                      MLV_COLOR_WHITE, MLV_COLOR_BLACK, " Nb Class: ", &c);
+                       MLV_COLOR_WHITE, MLV_COLOR_BLACK, " Nb Class: ", &c);
     nb_class = atoi(c);
-
 
     while (end)
     {
         MLV_wait_mouse(&x, &y);
-        if(MLV_BUTTON_LEFT) class = 1;
-        if(MLV_BUTTON_MIDDLE) class = 2;
-        if(MLV_BUTTON_RIGHT) class = 3;
-        
+        if (MLV_BUTTON_LEFT)
+            class = 1;
+        if (MLV_BUTTON_MIDDLE)
+            class = 2;
+        if (MLV_BUTTON_RIGHT)
+            class = 3;
+
         if ((x >= 65) && (x <= 585) && (y >= 165) && (y <= 685))
         {
             points[i].x = (x - 75 - (500 / 2)) / 250;
